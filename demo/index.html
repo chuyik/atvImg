@@ -2,17 +2,24 @@
 <html>
 <head>
   <title>atvImg Demo</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type='text/css' href="demo.css">
   <link rel="stylesheet" type="text/css" href="../atvImg.css">
 </head>
 <body>
   
-  <div>
-    <img id="atvImg1" 
-      src="https://raw.githubusercontent.com/BrianCS/atvImg/addDemo/demo/images/kloc-icon-flattened.jpg" 
-      style="width: 300px; margin-right: 10px">
-    <img id="atvImg2" 
-      src="https://raw.githubusercontent.com/BrianCS/atvImg/addDemo/demo/images/kloc-icon-flattened.jpg"
-      style="width: 300px;">
+  <div id="app">
+    <div class="titles">
+      <span>One image element only (No parallax effect)</span>
+      <span>Image with layers provided</span>
+    </div>
+    
+    <div class="imgs">
+      <img id="atvImg1" 
+        src="https://raw.githubusercontent.com/BrianCS/atvImg/addDemo/demo/images/kloc-icon-flattened.jpg">
+      <img id="atvImg2" 
+        src="https://raw.githubusercontent.com/BrianCS/atvImg/addDemo/demo/images/kloc-icon-flattened.jpg">
+    </div>
   </div>
   
   <script src="http://zeptojs.com/zepto.min.js"></script>

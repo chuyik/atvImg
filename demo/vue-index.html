@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>atvImg Demo</title>
+  <title>atvImg Demo with Vue.js</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' type='text/css' href="demo.css">
   <link rel="stylesheet" type="text/css" href="../atvImg.css">
 </head>
+
 <body>
   
   <div id="app">
-    <img
-      v-atv-img="img" :src="img.src" v-for="img in imgs" 
-      style="width: 300px; margin-right: 10px">
+    <div class="titles">
+      <span>One image element only (No parallax effect)</span>
+      <span>Image with layers provided</span>
+    </div>
+    
+    <div class="imgs">
+      <img
+        v-atv-img="img" :src="img.src" v-for="img in imgs" 
+        style="width: 300px; margin-right: 10px">
+    </div>
   </div>
   
   <script src="http://vuejs.org/js/vue.js"></script>
