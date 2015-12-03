@@ -1,3 +1,5 @@
+/* globals $ */
+
 /*
  * atvImg
  * Copyright 2015 Drew Wilson
@@ -12,6 +14,9 @@
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  */
+
+if (typeof $ === 'undefined')
+  throw 'Zepto or jQuery is required as dependency, please pass its reference as `$`.' 
 
 /**
  * Create parallax effect.
