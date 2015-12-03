@@ -20,13 +20,14 @@ And here're some changes:
 - [Demo with Vue.js](http://chuyik.github.io/atvImg/demo/vue-index.html)
 
 ## Usage
-```
-<div class="atvImg">
-   <img src="/images/flattened-icon.jpg">
-   
-   <div class="atvImg-layer" data-img="/images/back.png"></div>
-   <div class="atvImg-layer" data-img="/images/front.png"></div>
-</div>
+Available options are listed [here](https://github.com/chuyik/atvImg/blob/master/atvImg.js#L16-L20).
+
+```html
+<img id="atvImg1" src="https://raw.githubusercontent.com/BrianCS/atvImg/addDemo/demo/images/kloc-icon-flattened.jpg">
+
+<script>
+    $('#atvImg1').atvImg(options)
+</script>
 ```
 
 -------------------

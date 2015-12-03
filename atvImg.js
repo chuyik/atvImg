@@ -14,8 +14,8 @@
  */
 
 /**
- * [atvImg description]
- * @param  {Object} $img - Zepto/jQuery object of an image element
+ * Create parallax effect.
+ * 
  * @param  {Object} options
  * @param  {[string]} options.layers - Urls of image layers
  */
