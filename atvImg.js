@@ -173,3 +173,9 @@ function atvImg(options) {
   }
 }
 
+
+// work with jQuery/Zepto
+
+(function ($) {
+  $.fn.atvImg = atvImg;
+})(this.jQuery || this.Zepto);
