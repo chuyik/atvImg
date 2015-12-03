@@ -86,7 +86,7 @@ function atvImg(options) {
     })
   }
 
-  $img.wrap($box)
+  $box.insertBefore($img).append($img)
 
 
   // Assemble container and its children
