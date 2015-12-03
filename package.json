@@ -1,0 +1,26 @@
+{
+  "name": "atvimg",
+  "version": "0.0.1",
+  "description": "Simple Apple TV parallax effect.",
+  "main": "atvImg.js",
+  "scripts": {
+    "start": "browser-sync start --server --files='*/*' --startPath=demo",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chuyik/atvImg.git"
+  },
+  "keywords": [
+    "apple",
+    "tv",
+    "parallax",
+    "effect"
+  ],
+  "author": "Edward Chu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chuyik/atvImg/issues"
+  },
+  "homepage": "https://github.com/chuyik/atvImg#readme"
+}
