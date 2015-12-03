@@ -11,7 +11,7 @@ And here're some changes:
 
 ## Installation
 - Install via NPM
-    > npm install atvimg
+    > npm install `atvimg`
     
 - Manually add `atvImg.js` and `atvImg.css` into your project
 
@@ -20,7 +20,7 @@ And here're some changes:
 - [Demo with Vue.js](http://chuyik.github.io/atvImg/demo/vue-index.html)
 
 ## Usage
-Available options are listed [here](https://github.com/chuyik/atvImg/blob/master/atvImg.js#L16-L23).
+Available options are listed [here](https://github.com/chuyik/atvImg/blob/master/atvImg.js#L21-L28).
 
 ```html
 <img id="atvImg1" src="https://raw.githubusercontent.com/BrianCS/atvImg/addDemo/demo/images/kloc-icon-flattened.jpg">
