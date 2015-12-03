@@ -41,10 +41,11 @@ function atvImg(options) {
   
   var $box = $('<div />').addClass('atvImg')
               .attr('id', randomId())
-  $img.wrap($box)
   
   
   // Keep the appearance and layout unchanged
+  
+  $img.width($img.width()).height($img.height())
   
   $box
     .attr('style', $img.attr('style')) // clone all styles 
@@ -84,6 +85,8 @@ function atvImg(options) {
       src: $img.attr('src')
     })
   }
+
+  $img.wrap($box)
 
 
   // Assemble container and its children
