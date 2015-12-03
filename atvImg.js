@@ -158,13 +158,13 @@ function atvImg(options) {
       offsets = elem.getBoundingClientRect(),
       w = elem.clientWidth || elem.offsetWidth || elem.scrollWidth, // width
       h = elem.clientHeight || elem.offsetHeight || elem.scrollHeight, // height
-      wMultiple = 160 / w,
+      wMultiple = 320 / w,
       offsetX = 0.52 - (pageX - offsets.left - bdsl) / w, //cursor position X
       offsetY = 0.52 - (pageY - offsets.top - bdst) / h, //cursor position Y
       dy = (pageY - offsets.top - bdst) - h / 2, //@h/2 = center of container
       dx = (pageX - offsets.left - bdsl) - w / 2, //@w/2 = center of container
-      yRotate = (offsetX - dx) * (0.14 * wMultiple), //rotation for container Y
-      xRotate = (dy - offsetY) * (0.2 * wMultiple), //rotation for container X
+      yRotate = (offsetX - dx) * (0.07 * wMultiple), //rotation for container Y
+      xRotate = (dy - offsetY) * (0.1 * wMultiple), //rotation for container X
       imgCSS = 'rotateX(' + xRotate + 'deg) rotateY(' + yRotate + 'deg)', //img transform
       arad = Math.atan2(dy, dx), //angle between cursor and center of container in RAD
       angle = arad * 180 / Math.PI - 90, //convert rad in degrees
