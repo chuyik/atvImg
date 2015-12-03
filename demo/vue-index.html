@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>atvImg Demo</title>
+  <link rel="stylesheet" type="text/css" href="../atvImg.css">
+</head>
+<body>
+  
+  <div id="app">
+    <img v-atv-img="img" :src="img.src" v-for="img in imgs" 
+    style="width: 300px; margin-right: 10px">
+  </div>
+  
+  <script src="http://zeptojs.com/zepto.min.js"></script>
+  <script src="http://vuejs.org/js/vue.js"></script>
+  <script src="../atvImg.js"></script>
+  
+  <script>
+    Vue.directive('atv-img', function (value) {
+      $(this.el).atvImg(value)
+    })
+    
+	  var app = new Vue({
+      el: '#app',
+      data: {
+        imgs: [
+          {src: "https://raw.githubusercontent.com/BrianCS/atvImg/addDemo/demo/images/kloc-icon-flattened.jpg"},
+          {
+            src: "https://raw.githubusercontent.com/BrianCS/atvImg/addDemo/demo/images/kloc-icon-flattened.jpg",
+            layers: [
+              'http://kloc.pm/images/back.png', 
+              'http://kloc.pm/images/front.png'
+            ]
+          }
+        ]
+      }
+    })
+  </script>
+</body>
+</html>

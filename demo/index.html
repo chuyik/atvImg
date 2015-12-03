@@ -6,14 +6,30 @@
 </head>
 <body>
   
-  <img id="atvImg1" src="https://raw.githubusercontent.com/BrianCS/atvImg/addDemo/demo/images/kloc-icon-flattened.jpg" style="width: 300px;">
-  <br>
-  <br>
-  <img id="atvImg2" src="https://raw.githubusercontent.com/BrianCS/atvImg/addDemo/demo/images/kloc-icon-flattened.jpg" style="width: 300px;">
+  <img 
+    id="atvImg1" 
+    src="https://raw.githubusercontent.com/BrianCS/atvImg/addDemo/demo/images/kloc-icon-flattened.jpg" 
+    style="width: 300px; margin-right: 10px">
+  <img
+    id="atvImg2" 
+    src="https://raw.githubusercontent.com/BrianCS/atvImg/addDemo/demo/images/kloc-icon-flattened.jpg"
+    style="width: 300px;">
   
 
   <script src="http://zeptojs.com/zepto.min.js"></script>
   <script src="../atvImg.js"></script>
-  <script src="main.js"></script>
+  <script>
+    // Use it as a jQuery / Zepto plugin
+    $('#atvImg1').atvImg()
+    
+    $('#atvImg2').atvImg(
+      {
+        layers: [
+          'http://kloc.pm/images/back.png', 
+          'http://kloc.pm/images/front.png'
+        ]
+      }
+    )
+  </script>
 </body>
 </html>
