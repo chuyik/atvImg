@@ -226,25 +226,10 @@ function atvImg(options) {
   }
 }
 
-(function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define(['$'], factory);
-    } else if (typeof module === 'object' && module.exports) {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like environments that support module.exports,
-        // like Node.
-        module.exports = factory(require('$'));
-    } else {
-        // Browser globals (root is window)
-        root.returnExports = factory(root.$);
-    }
-}(this, function ($) {
-    return atvImg;
-}));
+// CommonJS-like
+if (typeof module === 'object' && module.exports) {
+  module.exports = atvImg
+}
 
-// work with jQuery/Zepto
-
-(function ($) {
-  $.fn.atvImg = atvImg;
-})(this.jQuery || this.Zepto);
+// work as a jQuery/Zepto plug-in
+$.fn.atvImg = atvImg
