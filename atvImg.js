@@ -126,7 +126,7 @@ function atvImg(options) {
 
       $box.on('touchstart', function (e) {
         win.preventScroll = true
-        processEnter(e, _box, zIndex)
+        processEnter(e, _box, _zIndex)
       })
 
       $box.on('touchend', function (e) {
