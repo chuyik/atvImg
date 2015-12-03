@@ -20,7 +20,7 @@ And here're some changes:
 - [Demo with Vue.js](http://chuyik.github.io/atvImg/demo/vue-index.html)
 
 ## Usage
-Available options are listed [here](https://github.com/chuyik/atvImg/blob/master/atvImg.js#L16-L20).
+Available options are listed [here](https://github.com/chuyik/atvImg/blob/master/atvImg.js#L16-L23).
 
 ```html
 <img id="atvImg1" src="https://raw.githubusercontent.com/BrianCS/atvImg/addDemo/demo/images/kloc-icon-flattened.jpg">

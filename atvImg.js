@@ -16,15 +16,16 @@
 /**
  * Create parallax effect.
  * 
- * @param  {Object} options
- * @param  {[string]} options.layers - Urls of image layers
+ * @param  {Object} [options]
+ * @param  {[string]} [options.layers] - Urls of image layers
+ * @param  {number}   [options.zIndex] - set zIndex when active
+ * @param  {number}   [options.scale]  - scale quantity
  */
 
 function atvImg(options) {
-  
-  var $img = this
-  
-  var isAsync = !$img.width()
+
+  var $img = this,
+      isAsync = !$img.width()
     
   if (isAsync) {
     $img.one("load", this.atvImg.bind($img, options))
@@ -35,6 +36,8 @@ function atvImg(options) {
     bd = d.getElementsByTagName('body')[0],
     win = window,
     supportsTouch = 'ontouchstart' in win || navigator.msMaxTouchPoints;
+
+  options = options || {}
 
 
   // Assemble Box element
@@ -73,7 +76,7 @@ function atvImg(options) {
   // Prepare layers data
   
   var layersData = []
-  if (options && options.layers) {
+  if (options.layers) {
     options.layers.forEach(function (layer) {
       // TODO: accept `layer` not only string type
       layersData.push({
@@ -113,42 +116,42 @@ function atvImg(options) {
   if (supportsTouch) {
     win.preventScroll = false;
 
-    (function (_box, _layers, _shine) {
+    (function (_box, _layers, _shine, _zIndex, _scale) {
       $box.on('touchmove', function (e) {
         if (win.preventScroll)
           e.preventDefault()
 
-        processMovement(e, true, _box, _layers, _shine)
+        processMovement(e, true, _box, _layers, _shine, _scale)
       })
 
       $box.on('touchstart', function (e) {
         win.preventScroll = true
-        processEnter(e, _box)
+        processEnter(e, _box, zIndex)
       })
 
       $box.on('touchend', function (e) {
         win.preventScroll = false
         processExit(e, _box, _layers, _shine)
       })
-    })($box[0], $layers.children(), $shine[0])
+    })($box[0], $layers.children(), $shine[0], options.zIndex, options.scale)
 
   } else {
 
-    (function (_box, _layers, _shine) {
+    (function (_box, _layers, _shine, _zIndex, _scale) {
       $box.on('mousemove', function (e) {
-        processMovement(e, false, _box, _layers, _shine)
+        processMovement(e, false, _box, _layers, _shine, _scale)
       })
       $box.on('mouseenter', function (e) {
-        processEnter(e, _box)
+        processEnter(e, _box, _zIndex)
       })
       $box.on('mouseleave', function (e) {
         processExit(e, _box, _layers, _shine)
       })
 
-    })($box[0], $layers.children(), $shine[0])
+    })($box[0], $layers.children(), $shine[0], options.zIndex, options.scale)
   }
 
-  function processMovement(e, touchEnabled, elem, layers, shine) {
+  function processMovement(e, touchEnabled, elem, layers, shine, scale) {
 
     var totalLayers = layers.length,
       bdst = bd.scrollTop,
@@ -178,7 +181,7 @@ function atvImg(options) {
     // container transform
     var container = elem.getElementsByClassName('atvImg-container')[0]
     if (container.className.indexOf(' over') != -1) {
-      imgCSS += ' scale3d(1.07,1.07,1.07)';
+      imgCSS += scale ? ' scale3d(' + scale + ',' + scale + ',' + scale + ')' : ' scale3d(1.07,1.07,1.07)';
     }
     container.style.transform = imgCSS;
     
@@ -195,7 +198,7 @@ function atvImg(options) {
     }
   }
 
-  function processEnter(e, elem) {
+  function processEnter(e, elem, zIndex) {
     var img = elem.getElementsByTagName('img')[0],
         container = elem.getElementsByClassName('atvImg-container')[0]
         
@@ -205,6 +208,11 @@ function atvImg(options) {
     if (img.style.display !== 'none') {
       container.style.display = 'block';
       img.style.display = "none"
+    }
+
+    if (zIndex > 0) {
+      elem.setAttribute('old-zindex', window.getComputedStyle(elem).getPropertyValue('z-index'))
+      elem.style.zIndex = zIndex
     }
   }
 
@@ -219,6 +227,8 @@ function atvImg(options) {
     for (var ly = 0; ly < layers.length; ly++) {
       layers[ly].style.transform = '';
     }
+
+    elem.style.zIndex = elem.getAttribute('old-zindex')
   }
   
   function randomId () {
