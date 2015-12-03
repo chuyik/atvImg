@@ -23,18 +23,54 @@
 function atvImg(options) {
   
   var $img = this
-
+  
+  var isAsync = !$img.width()
+    
+  if (isAsync) {
+    $img.one("load", this.atvImg.bind($img, options))
+    return
+  }
+  
   var d = document,
     bd = d.getElementsByTagName('body')[0],
     win = window,
     supportsTouch = 'ontouchstart' in win || navigator.msMaxTouchPoints;
 
+
+  // Assemble Box element
+  
   var $box = $('<div />').addClass('atvImg')
+              .attr('id', randomId())
+  $img.wrap($box)
+  
+  
+  // Keep the appearance and layout unchanged
+  
+  $box
+    .attr('style', $img.attr('style')) // clone all styles 
     .width($img.width())
     .height($img.height())
+    .css('transform', 'perspective(' + $box.width() * 2 + 'px)')
+    
+  var displayStyle;
+  switch ($img.css('display')) {
+    case 'block':
+      displayStyle = 'block' 
+      break;
+    case 'inline':
+    case 'inline-block':
+      displayStyle = 'inline-block'
+      break
+    default:
+      displayStyle = 'block'
+      break;
+  }
+  
+  $box.css('display', displayStyle);
 
-  $img.wrap($box).remove()
 
+  // Prepare layers data
+  
   var layersData = []
   if (options && options.layers) {
     options.layers.forEach(function (layer) {
@@ -49,6 +85,9 @@ function atvImg(options) {
     })
   }
 
+
+  // Assemble container and its children
+  
   var $container = $('<div />').addClass('atvImg-container'),
     $shine = $('<div />').addClass('atvImg-shine'),
     $shadow = $('<div />').addClass('atvImg-shadow'),
@@ -62,13 +101,11 @@ function atvImg(options) {
 
     $layers.append($layer)
   }
-
+  
   $container
     .append($shadow, $layers, $shine)
     .appendTo($box)
-
-  var w = $box.width()
-  $box.css('transform', 'perspective(' + w * 2 + 'px)')
+    .hide()
 
   if (supportsTouch) {
     win.preventScroll = false;
@@ -136,10 +173,11 @@ function atvImg(options) {
     }
 
     // container transform
-    if (elem.firstChild.className.indexOf(' over') != -1) {
+    var container = elem.getElementsByClassName('atvImg-container')[0]
+    if (container.className.indexOf(' over') != -1) {
       imgCSS += ' scale3d(1.07,1.07,1.07)';
     }
-    elem.firstChild.style.transform = imgCSS;
+    container.style.transform = imgCSS;
     
     // gradient angle and opacity for shine
     shine.style.background = 'linear-gradient(' + angle + 'deg, rgba(255,255,255,' + (pageY - offsets.top - bdst) / h * 0.4 + ') 0%,rgba(255,255,255,0) 80%)';
@@ -155,21 +193,33 @@ function atvImg(options) {
   }
 
   function processEnter(e, elem) {
-    elem.firstChild.className += ' over';
+    var img = elem.getElementsByTagName('img')[0],
+        container = elem.getElementsByClassName('atvImg-container')[0]
+        
+    container.className += ' over';
+    
+    // hide `img` for first time
+    if (img.style.display !== 'none') {
+      container.style.display = 'block';
+      img.style.display = "none"
+    }
   }
 
   function processExit(e, elem, layers, shine) {
-
-    var container = elem.firstChild;
-
+    var container = elem.getElementsByClassName('atvImg-container')[0]
+        
     container.className = container.className.replace(' over', '');
     container.style.transform = '';
+    
     shine.style.cssText = '';
 
     for (var ly = 0; ly < layers.length; ly++) {
       layers[ly].style.transform = '';
     }
-
+  }
+  
+  function randomId () {
+    return "atvimg_" + Math.random().toString().substr(2)
   }
 }
 
