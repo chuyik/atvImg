@@ -16,8 +16,8 @@ And here're some changes:
 - Manually add `atvImg.js` and `atvImg.css` into your project
 
 ## Demo
-- [xxx]()
-
+- [Demo with Zepto only](https://htmlpreview.github.io/?https://github.com/chuyik/atvImg/blob/master/demo%2Findex.html)
+- [Demo with Vue.js](https://htmlpreview.github.io/?https://github.com/chuyik/atvImg/blob/master/demo%2Fvue-index.html)
 
 ## Usage
 ```
